@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - Mi Sitio Web</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #6c63ff;
+            --accent-dark: #4b44cc;
+            --card-bg: #fff;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f8f9fa;
+            overflow-x: hidden;
+        }
+
+        /* NAV */
+        .navbar {
+            background: #111 !important;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+        .navbar-brand strong { color: #fff; letter-spacing: 1px; }
+        .nav-link { color: rgba(255,255,255,0.75) !important; transition: color .3s; }
+        .nav-link:hover, .nav-link.active { color: var(--accent) !important; }
+
+        /* HERO */
+        .hero-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
+            padding: 100px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            width: 600px; height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(108,99,255,0.15) 0%, transparent 70%);
+            top: -200px; right: -100px;
+            pointer-events: none;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(108,99,255,0.2);
+            border: 1px solid rgba(108,99,255,0.5);
+            color: #a89fff;
+            font-size: 13px;
+            padding: 6px 16px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        .hero-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+        .hero-title span { color: var(--accent); }
+        .hero-subtitle { font-size: 1.1rem; color: rgba(255,255,255,0.65); max-width: 540px; margin-bottom: 36px; }
+
+        /* SEARCH / FILTER */
+        .filter-bar {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            margin-bottom: 48px;
+        }
+        .filter-bar input {
+            border-radius: 50px;
+            border: 1.5px solid #e0e0e0;
+            padding: 10px 20px;
+            transition: border-color .3s;
+        }
+        .filter-bar input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(108,99,255,0.12); }
+        .filter-btn {
+            background: transparent;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 50px;
+            padding: 8px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all .25s;
+            color: #555;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+
+        /* PRODUCT CARDS */
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #efefef;
+            transition: transform .3s ease, box-shadow .3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        .product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 48px rgba(108,99,255,0.15); }
+        .product-card-img {
+            width: 100%; height: 220px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        .product-card-badge {
+            position: absolute;
+            top: 14px; left: 14px;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+        .badge-nuevo { background: #e8f5e9; color: #2e7d32; }
+        .badge-popular { background: #fff3e0; color: #e65100; }
+        .badge-oferta { background: #fce4ec; color: #c62828; }
+        .product-card-body { padding: 20px; }
+        .product-card-title { font-size: 1rem; font-weight: 600; margin-bottom: 6px; color: #1a1a2e; }
+        .product-card-desc { font-size: 13px; color: #888; margin-bottom: 16px; line-height: 1.5; }
+        .product-card-price { font-size: 1.4rem; font-weight: 700; color: var(--accent); }
+        .product-card-price span { font-size: 13px; font-weight: 400; color: #aaa; text-decoration: line-through; margin-left: 6px; }
+        .btn-add {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            width: 100%;
+            transition: background .25s, transform .15s;
+        }
+        .btn-add:hover { background: var(--accent-dark); color: #fff; transform: scale(1.02); }
+
+        /* STATS SECTION */
+        .stats-section {
+            background: linear-gradient(135deg, #6c63ff 0%, #4b44cc 100%);
+            padding: 64px 0;
+            color: #fff;
+        }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 2.8rem; font-weight: 700; }
+        .stat-label { font-size: 14px; opacity: .75; margin-top: 4px; }
+
+        /* TOAST */
+        .cart-toast {
+            position: fixed;
+            bottom: 30px; right: 30px;
+            background: #1a1a2e;
+            color: #fff;
+            padding: 14px 24px;
+            border-radius: 12px;
+            font-size: 14px;
+            z-index: 9999;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+        }
+
+        /* FOOTER */
+        footer { background: #111 !important; }
+
+        /* Animations initial states */
+        .hero-badge, .hero-title, .hero-subtitle, .hero-cta { opacity: 0; }
+        .product-card { opacity: 0; transform: translateY(40px); }
+        .stat-item { opacity: 0; transform: translateY(30px); }
+        .filter-bar { opacity: 0; transform: translateY(20px); }
+    </style>
+</head>
+<body>
+
+    <!-- Navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../index.html"><strong>Cambio de titulo para ejemplo (Mi sitio web david)</strong></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="servicios.html">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="productos.html">Productos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contactos.html">Contactos</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+   
+
+    <!-- Toast notification -->
+    <div class="cart-toast" id="toast">🛒 Producto agregado al carrito</div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p class="mb-0">&copy; 2026 Mi Sitio Web. Todos los derechos reservados.</p>
+            <small>Desarrollado por Rubiela — HTML, CSS, JavaScript y Bootstrap</small>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // ── Hero animation ──────────────────────────────────────────
+        const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+        heroTl
+            .to(".hero-badge",    { opacity: 1, y: 0, duration: .6 })
+            .to(".hero-title",    { opacity: 1, y: 0, duration: .7 }, "-=.2")
+            .to(".hero-subtitle", { opacity: 1, y: 0, duration: .6 }, "-=.3")
+            .to(".hero-cta",      { opacity: 1, y: 0, duration: .5 }, "-=.2");
+
+        // ── Stats counter ───────────────────────────────────────────
+        gsap.to(".stat-item", {
+            opacity: 1, y: 0, duration: .6, stagger: .15, ease: "power2.out",
+            scrollTrigger: { trigger: ".stats-section", start: "top 80%" }
+        });
+
+        document.querySelectorAll(".stat-number").forEach(el => {
+            const target = +el.dataset.target;
+            ScrollTrigger.create({
+                trigger: el,
+                start: "top 85%",
+                once: true,
+                onEnter: () => {
+                    gsap.to({ val: 0 }, {
+                        val: target, duration: 1.8, ease: "power2.out",
+                        onUpdate: function() { el.textContent = Math.round(this.targets()[0].val).toLocaleString(); }
+                    });
+                }
+            });
+        });
+
+        // ── Filter bar ──────────────────────────────────────────────
+        gsap.to(".filter-bar", {
+            opacity: 1, y: 0, duration: .6, ease: "power2.out",
+            scrollTrigger: { trigger: ".filter-bar", start: "top 88%" }
+        });
+
+        // ── Product cards stagger ───────────────────────────────────
+        gsap.to(".product-card", {
+            opacity: 1, y: 0, duration: .55, stagger: .09, ease: "power2.out",
+            scrollTrigger: { trigger: "#product-grid", start: "top 82%" }
+        });
+
+        // ── Hover pulse on cards ────────────────────────────────────
+        document.querySelectorAll(".product-card").forEach(card => {
+            card.addEventListener("mouseenter", () => {
+                gsap.to(card, { scale: 1.02, duration: .25, ease: "power1.out" });
+            });
+            card.addEventListener("mouseleave", () => {
+                gsap.to(card, { scale: 1, duration: .3, ease: "power1.out" });
+            });
+        });
+
+        // ── Add to cart button ──────────────────────────────────────
+        const toast = document.getElementById("toast");
+        document.querySelectorAll(".btn-add").forEach(btn => {
+            btn.addEventListener("click", function() {
+                // Button bounce
+                gsap.timeline()
+                    .to(this, { scale: .92, duration: .1 })
+                    .to(this, { scale: 1, duration: .3, ease: "elastic.out(1,.5)" });
+
+                // Toast
+                gsap.killTweensOf(toast);
+                gsap.to(toast, { opacity: 1, y: 0, duration: .4, ease: "power2.out" });
+                gsap.to(toast, { opacity: 0, y: 20, duration: .4, delay: 2.2, ease: "power2.in" });
+            });
+        });
+
+        // ── Category filter ─────────────────────────────────────────
+        document.querySelectorAll(".filter-btn").forEach(btn => {
+            btn.addEventListener("click", function() {
+                document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+                this.classList.add("active");
+                const cat = this.dataset.cat;
+                const cols = document.querySelectorAll("#product-grid [data-cat]");
+
+                cols.forEach(col => {
+                    const match = cat === "all" || col.dataset.cat === cat;
+                    if (match) {
+                        col.style.display = "";
+                        gsap.fromTo(col.querySelector(".product-card"),
+                            { opacity: 0, y: 24, scale: .96 },
+                            { opacity: 1, y: 0, scale: 1, duration: .4, ease: "power2.out" }
+                        );
+                    } else {
+                        gsap.to(col.querySelector(".product-card"), {
+                            opacity: 0, y: -10, duration: .25, ease: "power2.in",
+                            onComplete: () => { col.style.display = "none"; }
+                        });
+                    }
+                });
+            });
+        });
+
+        // ── Searchbar live filter ───────────────────────────────────
+        document.querySelector(".filter-bar input").addEventListener("input", function() {
+            const q = this.value.toLowerCase();
+            document.querySelectorAll("#product-grid [data-cat]").forEach(col => {
+                const title = col.querySelector(".product-card-title").textContent.toLowerCase();
+                const match = title.includes(q);
+                col.style.display = match ? "" : "none";
+                if (match) {
+                    gsap.fromTo(col.querySelector(".product-card"),
+                        { opacity: 0, y: 16 },
+                        { opacity: 1, y: 0, duration: .35, ease: "power2.out" }
+                    );
+                }
+            });
+        });
+
+        // ── Navbar link hover ripple ────────────────────────────────
+        document.querySelectorAll(".nav-link").forEach(link => {
+            link.addEventListener("mouseenter", () => gsap.to(link, { letterSpacing: ".5px", duration: .2 }));
+            link.addEventListener("mouseleave", () => gsap.to(link, { letterSpacing: "0px", duration: .2 }));
+        });
+    </script>
+</body>
+</html>
