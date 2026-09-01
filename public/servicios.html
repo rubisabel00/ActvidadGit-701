@@ -3,22 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Servicios - Mi Sitio Web</title>
+    <title>Servicios BMW - Sitio de prueba</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
     <!-- Estilos personalizados -->
     <link rel="stylesheet" href="../src/styles/style.css">
+
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        /* Imagen Hero: BMW i8 Concept (Wikimedia Commons) */
+        .hero-servicios {
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), 
+                        url('https://upload.wikimedia.org/wikipedia/commons/c/c5/BMW_i8_Concept.jpg') center/cover no-repeat;
+            padding: 90px 0;
+            border-bottom: 4px solid #0066b1;
+        }
+        
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #1e1e1e;
+            border: 1px solid #333333;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 102, 177, 0.4) !important;
+            border-color: #0066b1;
+        }
+
+        .service-img {
+            height: 240px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .btn-bmw {
+            background-color: #0066b1;
+            color: #ffffff !important;
+            border: none;
+            transition: background-color 0.3s;
+        }
+
+        .btn-bmw:hover {
+            background-color: #004d86;
+        }
+
+        /* Visibilidad de texto forzada */
+        .card-text, .text-muted-custom {
+            color: #d1d1d1 !important;
+        }
+
+        .form-control, .form-select {
+            background-color: #2a2a2a !important;
+            color: #ffffff !important;
+            border: 1px solid #444444 !important;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background-color: #333333 !important;
+            color: #ffffff !important;
+            border-color: #0066b1 !important;
+            box-shadow: 0 0 0 0.25rem rgba(0, 102, 177, 0.5) !important;
+        }
+
+        .form-control::placeholder {
+            color: #aaaaaa !important;
+        }
+
+        option {
+            background-color: #2a2a2a;
+            color: #ffffff;
+        }
+    </style>
 </head>
 
 <body>
 
     <!-- Navegación -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black sticky-top border-bottom border-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="../index.html">
-                <strong>Mi Sitio Web</strong>
+            <a class="navbar-brand d-flex align-items-center" href="../index.html">
+                <i class="bi bi-car-front-fill me-2 fs-3 text-primary"></i>
+                <strong class="text-white">Sitio de prueba gitflow</strong>
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -31,7 +108,7 @@
                         <a class="nav-link" href="../index.html">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="servicios.html">Servicios</a>
+                        <a class="nav-link active fw-bold text-primary" href="servicios.html">Servicios</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="productos.html">Productos</a>
@@ -44,22 +121,193 @@
         </div>
     </nav>
 
-    <!-- Contenido Principal -->
-  
-    <div class="container">
-        <h1>Nuestros Servicios</h1>
+    <!-- Header / Hero Section -->
+    <header class="hero-servicios text-center text-white">
+        <div class="container">
+            <h1 class="display-3 fw-bold text-uppercase mb-3">Experiencia BMW</h1>
+            <p class="lead fs-4 text-light">Placer de conducir, respaldado por servicios de clase mundial.</p>
+        </div>
+    </header>
+
+    <!-- Contenido Principal: Tarjetas de Servicios -->
+    <main class="container py-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold text-white">Nuestros Servicios Premium</h2>
+            <div class="mx-auto mt-2" style="height: 3px; width: 60px; background-color: #0066b1;"></div>
+        </div>
+
+        <div class="row g-4">
+            
+            <!-- Servicio 1: Venta de Vehículos (BMW en concesionario) -->
+            <div class="col-lg-6">
+                <div class="card service-card h-100 text-white">
+                    <img src="https://acroadtrip.blob.core.windows.net/catalogo-imagenes/s/RT_V_95841198a3064ec4baedca335982f985.webp">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <h4 class="card-title fw-bold text-white"><i class="bi bi-tags-fill me-2 text-primary"></i>Venta de Vehículos</h4>
+                        <p class="card-text">Explora nuestra colección de modelos BMW. Sedanes, SUVs y la línea deportiva M diseñados con ingeniería de alto rendimiento.</p>
+                        <a href="productos.html" class="btn btn-bmw mt-auto w-100 fw-bold py-2">Ver Catálogo de Vehículos</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Servicio 2: Test Drive Exclusivo (Interior volante BMW) -->
+            <div class="col-lg-6">
+                <div class="card service-card h-100 text-white">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5W-0yJHGBwny6FNQrrxYYr5Rw_n9th1c-VSy0ouunVr7kHCkFy7pMXJ5F&s=10">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <h4 class="card-title fw-bold text-white"><i class="bi bi-speedometer2 me-2 text-primary"></i>Test Drive Exclusivo</h4>
+                        <p class="card-text">Agenda una sesión de prueba. Siéntate al volante y experimenta el desempeño y control de la tecnología xDrive de primera mano.</p>
+                        <button type="button" class="btn btn-outline-light mt-auto w-100 fw-bold py-2" data-bs-toggle="modal" data-bs-target="#testDriveModal">Agendar Test Drive</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Servicio 3: Renta Corporativa (BMW M4) -->
+            <div class="col-lg-6">
+                <div class="card service-card h-100 text-white">
+                    <img src="https://friendscarrental.com/frontend/image/webp/bmw-7-series-1714468913206.webp" class="service-img" alt="Renta de vehículos BMW de lujo">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <h4 class="card-title fw-bold text-white"><i class="bi bi-key-fill me-2 text-primary"></i>Renta Corporativa y VIP</h4>
+                        <p class="card-text">Movilidad premium a tu alcance. Alquila modelos seleccionados por días o semanas con asistencia en carretera incluida.</p>
+                        <button type="button" class="btn btn-outline-light mt-auto w-100 fw-bold py-2" data-bs-toggle="modal" data-bs-target="#rentaModal">Consultar Disponibilidad</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Servicio 4: Mecánica y Reparación (Motor BMW) -->
+            <div class="col-lg-6">
+                <div class="card service-card h-100 text-white">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRADmPZSd_3kKuFjdx8p5KOUciJZINjG8PtZjoYRsGLSP46Oh1Qf8uq-d8g&s=10" class="service-img" alt="Servicio Técnico y Repuestos BMW">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <h4 class="card-title fw-bold text-white"><i class="bi bi-tools me-2 text-primary"></i>Taller y Repuestos Originales</h4>
+                        <p class="card-text">Mantenimiento preventivo, diagnóstico computarizado y repuestos certificados por la marca para garantizar el óptimo funcionamiento de tu BMW.</p>
+                        <button type="button" class="btn btn-bmw mt-auto w-100 fw-bold py-2" data-bs-toggle="modal" data-bs-target="#tallerModal">Agendar Cita en Taller</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Modales -->
+    <div class="modal fade" id="testDriveModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-white border-secondary">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title text-white">Agendar Test Drive</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formTestDrive">
+                        <div class="mb-3">
+                            <label class="form-label text-white">Nombre Completo</label>
+                            <input type="text" class="form-control" placeholder="Ej. Juan Pérez" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">Modelo de interés</label>
+                            <select class="form-select">
+                                <option>BMW Serie 3 Sedan</option>
+                                <option>BMW X5 SUV</option>
+                                <option>BMW M4 Coupe</option>
+                                <option>BMW i4 Eléctrico</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-white">Fecha deseada</label>
+                            <input type="date" class="form-control" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-secondary">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-bmw" onclick="simularEnvio('Test Drive agendado exitosamente')">Confirmar Test Drive</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="rentaModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-white border-secondary">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title text-white">Consultar Renta VIP</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-light">Indica los detalles de tu solicitud y te enviaremos una propuesta formal:</p>
+                    <div class="mb-3">
+                        <label class="form-label text-white">Correo electrónico</label>
+                        <input type="email" class="form-control" placeholder="nombre@correo.com" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label text-white">Días de renta</label>
+                        <input type="number" class="form-control" placeholder="Ej. 3" required>
+                    </div>
+                </div>
+                <div class="modal-footer border-secondary">
+                    <button type="button" class="btn btn-bmw" onclick="simularEnvio('Cotización enviada a tu correo')">Solicitar Cotización</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="tallerModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-white border-secondary">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title text-white">Agendar Cita en Taller</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label text-white">Descripción del servicio o falla</label>
+                        <textarea class="form-control" rows="3" placeholder="Ej. Mantenimiento de los 10,000 km o revisión de frenos" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer border-secondary">
+                    <button type="button" class="btn btn-bmw" onclick="simularEnvio('Cita de taller registrada. Nos comunicaremos contigo.')">Agendar Cita</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-4 mt-5">
+    <footer class="bg-black text-white text-center py-4 mt-5 border-top border-secondary">
         <div class="container">
-            <p class="mb-0">&copy; 2026 Mi Sitio Web. Todos los derechos reservados.</p>
-            <small>Desarrollado con HTML, CSS, JavaScript y Bootstrap</small>
+            <p class="mb-0 text-white">&copy; 2026 Sitio de prueba gitflow. Todos los derechos reservados.</p>
+            <small class="text-muted-custom">Desarrollado con HTML, CSS, JavaScript y Bootstrap 5</small>
         </div>
     </footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="../src/scripts/script.js"></script>
 
+    <script>
+        // Lógica para cerrar el modal y mostrar la alerta
+        function simularEnvio(mensaje) {
+            var modales = document.querySelectorAll('.modal.show');
+            modales.forEach(function(modalNode) {
+                var modal = bootstrap.Modal.getInstance(modalNode);
+                if (modal) modal.hide();
+            });
+
+            const alertDiv = document.createElement('div');
+            alertDiv.className = 'alert alert-success alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-4 shadow-lg';
+            alertDiv.style.zIndex = '9999';
+            alertDiv.innerHTML = `
+                <strong>¡Confirmado!</strong> ${mensaje}.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            `;
+            
+            document.body.appendChild(alertDiv);
+
+            setTimeout(() => {
+                alertDiv.classList.remove('show');
+                setTimeout(() => alertDiv.remove(), 150);
+            }, 4000);
+        }
+    </script>
 </body>
 </html>
